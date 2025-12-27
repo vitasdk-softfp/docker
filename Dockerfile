@@ -3,7 +3,7 @@ FROM ubuntu:26.04
 ENV VITASDK /usr/local/vitasdk
 ENV PATH ${VITASDK}/bin:$PATH
 
-RUN apt-get update && apt install -y git curl bash sudo python3 bzip2 wget
+RUN apt-get update && apt install -y git curl bash sudo python3 bzip2 wget xz-utils
 
 RUN git clone https://github.com/vitasdk-softfp/vdpm.git --depth=1 && \
     cd vdpm/ && chmod +x ./*.sh && \
