@@ -5,7 +5,7 @@ ENV PATH ${VITASDK}/bin:$PATH
 
 RUN apk update 
 
-RUN apk add git curl bash
+RUN apk add git curl bash sudo
 
 RUN git clone https://github.com/vitasdk-softfp/vdpm.git --depth=1 && \
     cd vdpm/ && chmod +x ./*.sh && \
