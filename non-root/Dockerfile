@@ -1,5 +1,8 @@
 FROM alpine:3.12
 
+ENV VITASDK /usr/local/vitasdk
+ENV PATH ${VITASDK}/bin:$PATH
+
 RUN apk update 
 
 RUN apk add git curl bash sudo python3
