@@ -19,9 +19,9 @@ jobs:
       matrix:
         include:
           - context: .
-            tags: vitasdk/vitasdk:latest
+            tags: atamanenko/vitasdk-softfp:latest
           - context: ./non-root
-            tags: vitasdk/vitasdk:non-root
+            tags: atamanenko/vitasdk-softfp:non-root
 
     steps:
       - uses: actions/checkout@v5
