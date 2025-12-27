@@ -1,25 +1,25 @@
-FROM alpine:latest
+FROM arm64v8/ubuntu:26.04
 
 ENV VITASDK /usr/local/vitasdk
 ENV PATH ${VITASDK}/bin:$PATH
 
-RUN apk update 
+RUN apt update 
 
-RUN apk add git curl bash sudo python3
+RUN apt install -y git curl bash sudo python3 bzip2 wget
 
 RUN git clone https://github.com/vitasdk-softfp/vdpm.git --depth=1 && \
     cd vdpm/ && chmod +x ./*.sh && \
     ./bootstrap-vitasdk.sh && ./install-all.sh && cd .. && rm -fr vdpm/
 
 # Second stage of Dockerfile
-FROM alpine:latest
+FROM arm64v8/ubuntu:26.04
 
 ENV VITASDK /usr/local/vitasdk
 ENV PATH ${VITASDK}/bin:$PATH
 
-RUN apk add --no-cache bash make pkgconf curl fakeroot libarchive-tools file xz cmake sudo git python3
+RUN apt install -y bash make pkgconf curl fakeroot libarchive-tools file xz-utils cmake sudo git python3 bzip2 wget
 
-RUN adduser -D user &&\
+RUN useradd user &&\
     echo "export VITASDK=${VITASDK}" > /etc/profile.d/vitasdk.sh && \
     echo 'export PATH=$PATH:$VITASDK/bin'  >> /etc/profile.d/vitasdk.sh
 
