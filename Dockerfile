@@ -1,4 +1,4 @@
-FROM vitasdk-softfp/buildscripts:latest
+FROM vitasdk/buildscripts:latest
 
 RUN apk update 
 
@@ -9,7 +9,7 @@ RUN git clone https://github.com/vitasdk-softfp/vdpm.git --depth=1 && \
     ./install-all.sh && cd .. && rm -fr vdpm/
 
 # Second stage of Dockerfile
-FROM vitasdk-softfp/buildscripts:latest  
+FROM vitasdk/buildscripts:latest  
 
 RUN apk add --no-cache bash make pkgconf curl fakeroot libarchive-tools file xz cmake sudo git
 
