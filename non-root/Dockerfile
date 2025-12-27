@@ -2,7 +2,7 @@ FROM alpine:3.12
 
 RUN apk update 
 
-RUN apk add git curl bash sudo
+RUN apk add git curl bash sudo python3
 
 RUN git clone https://github.com/vitasdk-softfp/vdpm.git --depth=1 && \
     cd vdpm/ && chmod +x ./*.sh && \
