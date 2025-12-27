@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu:26.04
+FROM ubuntu:26.04
 
 ENV VITASDK /usr/local/vitasdk
 ENV PATH ${VITASDK}/bin:$PATH
@@ -12,7 +12,7 @@ RUN git clone https://github.com/vitasdk-softfp/vdpm.git --depth=1 && \
     ./bootstrap-vitasdk.sh && ./install-all.sh && cd .. && rm -fr vdpm/
 
 # Second stage of Dockerfile
-FROM arm64v8/ubuntu:26.04
+FROM ubuntu:26.04
 
 ENV VITASDK /usr/local/vitasdk
 ENV PATH ${VITASDK}/bin:$PATH
