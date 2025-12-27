@@ -9,7 +9,7 @@ RUN apk add git curl bash
 
 RUN git clone https://github.com/vitasdk-softfp/vdpm.git --depth=1 && \
     cd vdpm/ && chmod +x ./*.sh && \
-    ./install-all.sh && cd .. && rm -fr vdpm/
+    ./bootstrap-vitasdk.sh && ./install-all.sh && cd .. && rm -fr vdpm/
 
 # Second stage of Dockerfile
 FROM alpine:latest
