@@ -11,4 +11,4 @@ RUN git clone https://github.com/vitasdk-softfp/vdpm.git --depth=1 && \
     ./bootstrap-vitasdk.sh && ./install-all.sh && cd .. && rm -fr vdpm/
 
 RUN git clone https://github.com/xyzz/vita-parse-core /usr/local/vita-parse-core --depth=1 && \
-    python3 -m pip install -r /usr/local/vita-parse-core/requirements.txt --break-system-packages
+    python3 -m pip install pyelftools==0.27 --break-system-packages
