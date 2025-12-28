@@ -2,23 +2,13 @@ FROM ubuntu:26.04
 
 ENV VITASDK /usr/local/vitasdk
 ENV PATH ${VITASDK}/bin:$PATH
+ENV PARSECOREPATH /usr/local/vita-parse-core/main.py
 
-RUN apt-get update && apt install -y git curl bash sudo python3 bzip2 wget xz-utils netcat-openbsd
+RUN apt-get update && apt-get install -y bash make pkgconf curl fakeroot libarchive-tools file xz-utils cmake sudo git python3 python3-pip bzip2 wget netcat-openbsd
 
 RUN git clone https://github.com/vitasdk-softfp/vdpm.git --depth=1 && \
     cd vdpm/ && chmod +x ./*.sh && \
     ./bootstrap-vitasdk.sh && ./install-all.sh && cd .. && rm -fr vdpm/
 
-# Second stage of Dockerfile
-FROM ubuntu:26.04
-
-ENV VITASDK /usr/local/vitasdk
-ENV PATH ${VITASDK}/bin:$PATH
-
-RUN apt-get update && apt-get install -y bash make pkgconf curl fakeroot libarchive-tools file xz-utils cmake sudo git python3 bzip2 wget netcat-openbsd
-
-RUN useradd user &&\
-    echo "export VITASDK=${VITASDK}" > /etc/profile.d/vitasdk.sh && \
-    echo 'export PATH=$PATH:$VITASDK/bin'  >> /etc/profile.d/vitasdk.sh
-
-COPY --from=0 --chown=user ${VITASDK} ${VITASDK}
+RUN git clone https://github.com/xyzz/vita-parse-core /usr/local/vita-parse-core -=depth=1 && \
+    python3 -m pip install -r /usr/local/vita-parse-core/requirements.txt
