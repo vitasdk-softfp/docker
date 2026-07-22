@@ -17,8 +17,8 @@ COPY --from=0 ${VITASDK} ${VITASDK}
 ARG USER=vitasdk
 ENV HOME /home/$USER
 
-# install sudo as root
-RUN apt-get update && apt-get install -y sudo
+# install sudo and netcat as root
+RUN apt-get update && apt-get install -y sudo netcat-openbsd
 
 # add new user
 RUN useradd $USER \
